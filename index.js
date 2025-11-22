@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const app = express();
 __path = process.cwd()
@@ -6,7 +7,6 @@ const PORT = process.env.PORT || 8000;
 let code = require('./pair');
 require('events').EventEmitter.defaultMaxListeners = 500;
 app.use('/code', code);
-
 
 const fs = require("fs");
 
@@ -22,9 +22,8 @@ OWNER_NUMBER=
     process.exit();
 }
 
-
-app.use('/',async (req, res, next) => {
-res.sendFile(__path + '/pair.html')
+app.use('/', async (req, res, next) => {
+    res.sendFile(__path + '/pair.html')
 })
 
 app.use(bodyParser.json());
