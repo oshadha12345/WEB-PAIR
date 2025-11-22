@@ -1,42 +1,36 @@
+require("dotenv").config();
 const express = require('express');
-const app = express();
-__path = process.cwd()
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 8000;
-require('events').EventEmitter.defaultMaxListeners = 500;
-
-// --- Auto ENV Creator ---
 const fs = require("fs");
+const __path = process.cwd();
+const PORT = process.env.PORT || 8000;
 
+// --- Create .env if missing (empty values)
 if (!fs.existsSync("./.env")) {
     fs.writeFileSync("./.env",
 `MEGA_EMAIL=
 MEGA_PASSWORD=
-SESSION_ID=
 OWNER_NUMBER=
+SESSION_ID=
 `);
-    console.log("⚠️ .env file missing. A new one was created.");
-    console.log("➡️ Fill details in .env and restart bot.");
+    console.log("⚠️ .env missing → Created new one.");
+    console.log("➡️ Please fill MEGA_EMAIL, MEGA_PASSWORD, OWNER_NUMBER and run again.");
     process.exit();
 }
 
-// --- Load ENV ---
-require("dotenv").config();
+const app = express();
+const pairRouter = require('./pair');
+app.use('/code', pairRouter);
 
-// --- Routes ---
-app.use('/code', require('./pair'));
-
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     res.sendFile(__path + '/pair.html');
 });
 
-// --- Body Parser ---
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// --- Start Server ---
 app.listen(PORT, () => {
-    console.log(`⏩ Server running on http://localhost:` + PORT)
+    console.log(`⏩ Server running at http://localhost:${PORT}`);
 });
 
 module.exports = app;
