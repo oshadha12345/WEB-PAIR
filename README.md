@@ -4,8 +4,11 @@
 
 ---
 
-### 🚀 Replit වෙත Import කර QR Code එක ලබා ගන්න
+### 🚀 Replit වෙත Import කර QR Code එක ලබා ගන්න කරුණාකර පහත පියවර අනුගමනය කරන්න:
 
-පහත Button එක ක්ලික් කිරීමෙන් මෙම Code එක ඔබගේ Replit ගිණුමට Import වනු ඇත.
+1.  `Click bellow Replit btn` > `Import from GitHub` තෝරන්න.
+2.  පහත Repository Link එක ඇතුළත් කර Import කරන්න:
+
+`https://github.com/Akashkavindu/WEB-PAIR`
 
 [![Run on Replit](https://replit.com/badge/github/Akashkavindu/WEB-PAIR)](https://replit.com/github/Akashkavindu/WEB-PAIR)
